@@ -3,6 +3,8 @@ Tagged Netstrings
 
 This is an implementation of [Tagged Netstrings](http://tnetstrings.org/) in racket.
 
+The public interface is provided from "tnetstrings.rkt".
+
 `(read-tnetstring)` reads a single tnetstring from `current-input-port`.
 
 `(read-tnetstring port)` reads a single tnetstring from `port`.
@@ -11,9 +13,9 @@ This is an implementation of [Tagged Netstrings](http://tnetstrings.org/) in rac
 
 `(write-tnetstring val port)` writes `val` (encoded as a tnetstring) to `port`.
 
-`(value->tnetstring val)` returns `val` in a bytestring encoded as a tnetstring.
+`(value->bytes/tnetstring val)` returns `val` in a bytestring encoded as a tnetstring.
 
-`(tnetstring->value bstr)` returns the valued encoded in `bstr` as a tnetstring.
+`(bytes->value/tnetstring bstr)` returns the valued encoded in `bstr` as a tnetstring.
 
 This is how the Netstrings types are mapped to racket types.
 
