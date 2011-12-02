@@ -24,3 +24,5 @@ This is how the Netstrings types are mapped to racket types.
     boolean    -> boolean
     dictionary -> dict (reads to hash)
     list       -> list
+
+The contents of this repo are available under the BSD style license specified in LICENSE
