@@ -64,7 +64,8 @@
     ls
     (make-hash
       (map (lambda (pair)
-             (unless (bytes? (first pair))
-               (error "key must be a bytestring")))
+             (if (not (bytes? (first pair)))
+		 (error "key must be a bytestring")
+		 pair))
            (cons (take ls 2)
                  (make-dictionary (drop ls 2)))))))
