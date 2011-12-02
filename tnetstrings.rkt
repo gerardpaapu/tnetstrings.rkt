@@ -20,4 +20,4 @@
   (define bytes (open-output-bytes))
   (parameterize ([current-output-port bytes])
     (w:write-tnetstring val))
-  bytes)
+  (get-output-bytes bytes))
