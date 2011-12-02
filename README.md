@@ -4,9 +4,11 @@ Tagged Netstrings
 This is an implementation of [Tagged Netstrings](http://tnetstrings.org/) in racket.
 
 `(read-tnetstring)` reads a single tnetstring from `current-input-port`.
+
 `(read-tnetstring port)` reads a single tnetstring from `port`.
 
 `(write-tnetstring val)` writes `val` (encoded as a tnetstring) to `current-output-port`.
+
 `(write-tnetstring val port)` writes `val` (encoded as a tnetstring) to `port`.
 
 `(value->tnetstring val)` returns `val` in a bytestring encoded as a tnetstring.
