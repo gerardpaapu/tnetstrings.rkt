@@ -58,14 +58,14 @@
     [(#\]) (with-bytes read-all body)]
 
     [else (error (format "Invalid type \"~A\"" type-marker))]))
-
 (define (make-dictionary ls)
-  (if (empty? ls)
-    ls
-    (make-hash
-      (map (lambda (pair)
-             (if (not (bytes? (first pair)))
-		 (error "key must be a bytestring")
-		 pair))
-           (cons (take ls 2)
-                 (make-dictionary (drop ls 2)))))))
+  (define (make-dictionary* ls)
+    (if (empty? ls)
+       '()
+       (cons (let ([key (first ls)]
+		   [value (second ls)])
+	       (if (not (bytes? key))
+		   (error "keys must be bytestrings")
+		   (cons key value)))
+	     (make-dictionary* (drop ls 2)))))
+  (make-immutable-hash (make-dictionary* ls)))
