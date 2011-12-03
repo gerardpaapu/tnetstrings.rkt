@@ -3,7 +3,7 @@
 
 @title{Tagged Netstrings}
 
-@defmodule[(planet sharkbrain/tnetstrings)]
+@defmodule[(planet gerard/tnetstrings)]
 
 @defproc[(read-tnetstring [port input-port? (current-input-port)])
 	 any?]
