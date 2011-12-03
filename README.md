@@ -3,7 +3,7 @@ Tagged Netstrings
 
 This is an implementation of [Tagged Netstrings](http://tnetstrings.org/) in racket.
 
-The public interface is provided from "tnetstrings.rkt".
+The public interface is provided from "main.rkt".
 
 `(read-tnetstring)` reads a single tnetstring from `current-input-port`.
 
