@@ -2,7 +2,7 @@
 (require rackunit)
 (require (prefix-in r: "read.rkt")
 	 (prefix-in w: "write.rkt")
-	 "tnetstrings.rkt")
+	 "main.rkt")
 
 (define (round-trip val)
   (bytes->value/tnetstring (value->bytes/tnetstring val)))
