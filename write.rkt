@@ -30,10 +30,18 @@
 
    [else (error (format "Can't write value: ~a" val))]))
 
-
 (define (write* body type)
-  (define n (number->bytes (bytes-length body)))
-  (write-bytes (bytes-append n #":" body type)))
+  (define len (bytes-length body))
+  
+  (when (> len 999999999)
+    (error (format "Body too large at ~a bytes, maximum is 999999999 bytes" len)))
+
+  (let ([written (write-bytes (bytes-append (number->bytes len)
+                                            #":"
+                                            body type))))
+    (unless (= written len)
+      (error (format "Error writing" )))])))
+
 
 (define (to-bytes fn)
   (define b (open-output-bytes))

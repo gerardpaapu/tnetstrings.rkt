@@ -7,14 +7,18 @@
       eof
       (let ([body (read-bytes size)]
 	    [type-marker (read-byte)])
-	(if (eof-object? type-marker)
-	    (error (format "Error reading: ~a:~a" size body))
-	    (parse-object type-marker body)))))
+        (if (or (eof-object? type-marker)
+                (not (= (bytes-length body) size)))
+            (error (format "Error reading: ~a:~a" size body))
+            (parse-object type-marker body)))))
 
 (define (read-size)
   (define (rs ls)
     (let ([b (read-byte)])
       (cond [(eof-object? b) #f]
+
+            [(> (length ls) 9)
+             (error "Size should not be larger than 999,999,999 bytes")]
 	    
 	    [(= b (char->integer #\:))
 	     (reverse ls)]
@@ -58,6 +62,7 @@
     [(#\]) (with-bytes read-all body)]
 
     [else (error (format "Invalid type \"~A\"" type-marker))]))
+
 (define (make-dictionary ls)
   (define (make-dictionary* ls)
     (if (empty? ls)
