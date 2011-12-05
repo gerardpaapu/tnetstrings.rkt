@@ -61,7 +61,7 @@
 
     [(#\]) (with-bytes read-all body)]
 
-    [else (error (format "Invalid type \"~A\"" type-marker))]))
+    [else (error (format "Invalid type \"~A\"" (integer->char type-marker)))]))
 
 (define (make-dictionary ls)
   (define (make-dictionary* ls)

@@ -36,11 +36,10 @@
   (when (> len 999999999)
     (error (format "Body too large at ~a bytes, maximum is 999999999 bytes" len)))
 
-  (let ([written (write-bytes (bytes-append (number->bytes len)
-                                            #":"
-                                            body type))))
-    (unless (= written len)
-      (error (format "Error writing" )))])))
+  (let* ([message (bytes-append (number->bytes len) #":" body type)]
+	 [written (write-bytes message)])
+    (unless (= written (bytes-length message))
+      (error (format "Error writing: wrote ~a bytes out of ~a" written len )))))
 
 
 (define (to-bytes fn)
