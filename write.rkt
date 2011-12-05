@@ -3,12 +3,12 @@
 
 (define (write-tnetstring val)
   (cond 
-   [(void? val) (write-bytes #"0:~")]
+   [(void? val) (write* #"" #"~")]
 
    [(bytes? val) (write* val #",")]
 
    [(boolean? val)
-    (write-bytes (if val #"4:true!" #"5:false!"))]
+    (write* (if val #"true" #"false") #"!")]
    
    [(list? val)
     (let ([body (to-bytes (lambda ()
