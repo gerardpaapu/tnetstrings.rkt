@@ -8,7 +8,7 @@
   (parameterize ([current-input-port port])
     (r:read-tnetstring)))
 
-(define (write-tnestring val [port (current-output-port)])
+(define (write-tnetstring val [port (current-output-port)])
   (parameterize ([current-output-port port])
     (w:write-tnetstring val)))
 
