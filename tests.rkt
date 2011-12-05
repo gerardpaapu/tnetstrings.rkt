@@ -10,6 +10,12 @@
 (define (check-round-trip val)
   (check-equal? val (round-trip val)))
 
+(check-equal? (w:remove-trailing-zeros "3.0000000") "3")
+(check-equal? (w:remove-trailing-zeros "3.14159000") "3.14159")
+(check-equal? (w:remove-trailing-zeros "3.") "3")
+(check-equal? (w:remove-trailing-zeros "323124") "323124")
+(check-equal? (w:remove-trailing-zeros "0") "0")
+
 (check-eq? (r:with-bytes r:read-size #"45:") 45)
 (check-eq? (r:with-bytes r:read-size #"23:") 23)
 (check-eq? (r:with-bytes r:read-size #"45123:") 45123)
