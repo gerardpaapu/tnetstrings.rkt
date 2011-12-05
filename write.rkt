@@ -24,13 +24,9 @@
 				 (write-tnetstring val))))])
       (write* body #"}"))]
    
-   [(integer? val) (write* (number->bytes val) #"#")]
+   [(exact-integer? val) (write* (number->bytes val) #"#")]
 
-   [(rational? val)
-    (write* (number->bytes (if (exact? val)
-			       (exact->inexact val)
-			       val))
-	    #"^")]
+   [(rational? val) (write* (number->bytes val) #"^")]
 
    [else (error (format "Can't write value: ~a" val))]))
 
@@ -46,4 +42,11 @@
   (get-output-bytes b))
 
 (define (number->bytes n)
-  (string->bytes/latin-1 (number->string n)))
+  (string->bytes/latin-1
+   (remove-trailing-zeros (real->decimal-string n 99))))
+
+(define (remove-trailing-zeros str)
+  (let loop ([str (reverse (string->list str))])
+    (case (first str)
+      [(#\0 #\.) (loop (rest str))]
+      [else (list->string(reverse str))])))
